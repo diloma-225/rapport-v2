@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -129,13 +129,13 @@
         </div>
         <div>
             <p class="text-justify">
-                Au 31 décembre 2023, le portefeuille de l’Etat est constitué de 87 sociétés tout comme en 2022. L’année 2023 a vu la création de la Société Ivoirienne de Transformation Agricole (SOCITA) et la sortie la Banque Populaire de Côte d’Ivoire (BPCI) du portefeuille de l’Etat.
+                Au 31 décembre 2023, le portefeuille de l’Etat est constitué de 87 sociétés tout comme en 2022. L’année 2023 a vu la création de la Société Ivoirienne de Transformation Agricole (SOCITA) et la sortie de la Banque Populaire de Côte d’Ivoire (BPCI) du portefeuille de l’Etat.
             </p>
         </div>
     </div>
 
     <div class=" w-4/6 sm:w-5/6 3xl:w-3/6 h-auto mx-auto mt-10">
-        <h1 class="text-[28px] uppercase text-[#0F622C] mb-2">Instauration continue des meilleurs pratiques de gouvernance</h1>
+        <h1 class="text-[28px] uppercase text-[#0F622C] mb-2">Instauration continue des meilleures pratiques de gouvernance</h1>
         <div class="hr w-2/6 h-3 bg-[#0F622C] rounded-xl mb-5"></div>
     </div>
     <section class="horizontal">
@@ -335,8 +335,19 @@
         <button class="bg-[#0F622C] p-5 rounded-full border-2 border-[#E89E01]">
             <img src="./images/arrow-down.svg" class="w-[34px]" alt="">
         </button>
-        <a href="https://dgpe.gouv.ci/fr/rapports-sef/rapport-annuel-2023/" target="_blank" class="underline block text-justify">Télécharger la version complète du Rapport Annuel incluant la panorama global ainsi que les fiches entreprise.</a>
+        <a href="https://dgpe.gouv.ci/fr/rapports-sef/rapport-annuel-2023/" class="underline block text-justify">Télécharger la version complète du Rapport Annuel incluant la panorama global ainsi que les fiches entreprise.</a>
     </div>
+
+<!--     <div id="id1"
+    style="position: fixed; top: 100px; left: 0; width: 100%; max-width: 360px; height: 500px; overflow: hidden; z-index: 9999;">
+    </div> -->
+
+
+
+    <div class="bubble-container w-28 h-28 sm:w-20 sm:h-20 bg-slate-600 rounded-full fixed z-99 bottom-10 right-6" id="coze-bubble">
+        
+    </div>
+
 
 
     <footer class="w-full from-green-200">
@@ -348,7 +359,71 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="./js/app.min.js"></script>
+    <script src="js/app.min.js"></script>
 
+
+    <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script>
+    <script>
+         const bubble = document.getElementById("coze-bubble");
+       window.onload = function () {
+    const client = new CozeWebSDK.WebChatClient({
+      config: {
+        bot_id: '7499821600364265527',
+      },
+      componentProps: {
+        title: 'Coze',
+      },
+      auth: {
+        type: 'token',
+        token: 'pat_cWhkdgNz5uqSeabdYHEUs6h40GkyxNn06Ehmmqpbh7zPBcg7dhn9uh5X5MpuNuqN',
+        onRefreshToken: function () {
+          return 'pat_cWhkdgNz5uqSeabdYHEUs6h40GkyxNn06Ehmmqpbh7zPBcg7dhn9uh5X5MpuNuqN';
+        }
+      },
+      ui: {
+        asstBtn: {
+          isNeed: false,
+        },
+        header:{
+            isShow:true,
+        },
+        footer:{
+            isShow:false,
+        },
+        chatBot: {
+            title: "",
+            uploadable: false,
+            /* el: document.getElementById('id1'), */
+            onHide: () => {
+               
+                bubble.classList.remove("hidden");
+            },
+            onShow: () => {
+                bubble.classList.add('hidden');
+            }, 
+        },
+      }
+    });
+
+    const bubble = document.getElementById("coze-bubble");
+    bubble.addEventListener("click", function () {
+      client.showChatBot();
+      bubble.classList.add('hidden');
+    });
+
+   /*  const observer = new MutationObserver(() => {
+      const iframe = document.querySelector("iframe");
+      if (!iframe) {
+        bubble.classList.remove("hidden");
+        //bubble.classList.remove("hidden"); // le bouton revient
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    }); */
+  };
+    </script>
 </body>
 </html>
