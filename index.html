@@ -364,8 +364,16 @@
 
     <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script>
     <script>
-         const bubble = document.getElementById("coze-bubble");
-       window.onload = function () {
+  const bubble = document.getElementById("coze-bubble");
+  window.onload = function () {
+
+    // 🔑 Génère ou récupère un ID unique pour cet utilisateur
+    let userId = localStorage.getItem('cozeUserId');
+    if (!userId) {
+      userId = crypto.randomUUID();
+      localStorage.setItem('cozeUserId', userId);
+    }
+
     const client = new CozeWebSDK.WebChatClient({
       config: {
         bot_id: '7499821600364265527',
@@ -380,50 +388,40 @@
           return 'pat_8ODeRnzvVsMLkpja0E6RyVabznBWOce8pfSMT4I86F2JyRY3JJahE8jK4W0vAuVU';
         }
       },
+      // ✅ Ajoute userInfo ici !
+      userInfo: {
+        id: userId
+      },
       ui: {
         asstBtn: {
           isNeed: false,
         },
         header:{
-            isShow:true,
+          isShow:true,
         },
         footer:{
-            isShow:false,
+          isShow:false,
         },
         chatBot: {
-            title: "",
-            uploadable: false,
-            /* el: document.getElementById('id1'), */
-            onHide: () => {
-               
-                bubble.classList.remove("hidden");
-            },
-            onShow: () => {
-                bubble.classList.add('hidden');
-            }, 
+          title: "",
+          uploadable: false,
+          onHide: () => {
+            bubble.classList.remove("hidden");
+          },
+          onShow: () => {
+            bubble.classList.add('hidden');
+          }, 
         },
       }
     });
 
-    const bubble = document.getElementById("coze-bubble");
     bubble.addEventListener("click", function () {
       client.showChatBot();
       bubble.classList.add('hidden');
     });
 
-   /*  const observer = new MutationObserver(() => {
-      const iframe = document.querySelector("iframe");
-      if (!iframe) {
-        bubble.classList.remove("hidden");
-        //bubble.classList.remove("hidden"); // le bouton revient
-      }
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    }); */
   };
-    </script>
+</script>
+
 </body>
 </html>
