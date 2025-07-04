@@ -346,7 +346,7 @@
 
     <div class="bubble-container w-28 h-28 sm:w-20 sm:h-20 bg-slate-600 rounded-full fixed z-99 bottom-10 right-6" id="coze-bubble">
         
-    </div>
+    </div> 
 
 
 
@@ -360,19 +360,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="js/app.min.js"></script>
-
-
-    <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script> 
-    <script>
+    <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.8/libs/oversea/index.js"></script>
+   <script>
   const bubble = document.getElementById("coze-bubble");
   window.onload = function () {
 
-    // 🔑 Génère ou récupère un ID unique pour cet utilisateur
-    let userId = localStorage.getItem('cozeUserId');
-    if (!userId) {
-      userId = crypto.randomUUID();
-      localStorage.setItem('cozeUserId', userId);
-    }
+
 
     const client = new CozeWebSDK.WebChatClient({
       config: {
@@ -387,10 +380,6 @@
         onRefreshToken: function () {
           return 'pat_8ODeRnzvVsMLkpja0E6RyVabznBWOce8pfSMT4I86F2JyRY3JJahE8jK4W0vAuVU';
         }
-      },
-      // ✅ Ajoute userInfo ici !
-      userInfo: {
-        id: userId
       },
       ui: {
         asstBtn: {
@@ -419,6 +408,7 @@
       client.showChatBot();
       bubble.classList.add('hidden');
     });
+    
 
    const observer = new MutationObserver(() => {
       const iframe = document.querySelector("iframe");
@@ -433,7 +423,7 @@
       subtree: true,
     });
   };
-</script>
+</script> 
 
 </body>
 </html>
